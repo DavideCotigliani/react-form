@@ -1,9 +1,12 @@
 
 const Articles = () => {
+    const myArticles = ["Shampoo", "Deodorante", "Detergente", "Sapone"]
     return (
-        <div>
-
-        </div>
+        <ul>
+            {myArticles.map((article, index) => (
+                <li key={index}>{article}</li>
+            ))}
+        </ul>
     )
 }
 
