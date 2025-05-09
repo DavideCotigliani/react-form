@@ -1,12 +1,17 @@
 import { useState } from "react"
 
 const Articles = () => {
-    const myArticles = ["Shampoo", "Deodorante", "Detergente", "Sapone"]
+    // il primo state contiene il mio array di stringhe
+    const [myArticles, setMyArticles] = useState(["Shampoo", "Deodorante", "Detergente", "Sapone"])
+    // Il secondo state salva ciò l'utente andrà a scrivere
+    const [newArticle, setNewArticle] = useState('');
 
-    const [newArticle, setNewArticle] = useState('')
-
-    const handleSubmit = event => {
-        event.preventDefault();
+    // funzione per aggiungere articolo
+    const addArticle = e => {
+        e.preventDefault();
+        const updatedArticle = [...myArticles, newArticle];
+        setMyArticles(updatedArticle);
+        setNewArticle('')
     }
     return (
         <>
@@ -15,8 +20,7 @@ const Articles = () => {
                     <li key={index}>{article}</li>
                 ))}
             </ul>
-            <form onSubmit={handleSubmit}>
-                <p>Il nuovo articolo è {newArticle}</p>
+            <form onSubmit={addArticle}>
                 <input type="text" value={newArticle} onChange={e => { setNewArticle(e.target.value) }} />
                 <button>Invia</button>
             </form>
