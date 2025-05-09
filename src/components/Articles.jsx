@@ -4,6 +4,10 @@ const Articles = () => {
     const myArticles = ["Shampoo", "Deodorante", "Detergente", "Sapone"]
 
     const [newArticle, setNewArticle] = useState('')
+
+    const handleSubmit = event => {
+        event.preventDefault();
+    }
     return (
         <>
             <ul>
@@ -11,8 +15,11 @@ const Articles = () => {
                     <li key={index}>{article}</li>
                 ))}
             </ul>
-            <p>Il nuovo articolo è {newArticle}</p>
-            <input type="text" value={newArticle} onChange={e => { setNewArticle(e.target.value) }} />
+            <form onSubmit={handleSubmit}>
+                <p>Il nuovo articolo è {newArticle}</p>
+                <input type="text" value={newArticle} onChange={e => { setNewArticle(e.target.value) }} />
+                <button>Invia</button>
+            </form>
         </>
 
     )
